@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-api
+spec:
+  replicas: 2 # Número de réplicas del pod
+  selector:
+    matchLabels:
+      app: springboot-api # Etiqueta para seleccionar los pods
+  template:
+    metadata:
+      labels:
+        app: springboot-api # Etiqueta para los pods
+    spec:
+      containers:
+      - name: springboot-api # Nombre del contenedor
+        image: mramoscli/api-springboot:latest # Imagen del contenedor
+        ports: 
+        - containerPort: 8080 # Puerto expuesto por el contenedor
+        env:
+        - name: SPRING_DATASOURCE_URL # Variable de entorno para la URL de la base de datos
+          value: jdbc:postgresql://postgres-service:5432/demo # URL de conexión a la base de datos
+        - name: SPRING_DATASOURCE_USERNAME # Variable de entorno para el usuario de la base de datos
+          value: postgres # Usuario de la base de datos
+        - name: SPRING_DATASOURCE_PASSWORD # Variable de entorno para la contraseña de la base de datos
+          value: postgres # Contraseña de la base de datos

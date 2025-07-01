@@ -4,3 +4,9 @@ metadata:
   name: postgres-service
 spec:
   type: ClusterIP # Tipo de Service: accesible solo dentro del clúster (no desde fuera)
+  selector:
+    app: postgres # Selecciona los pods con la etiqueta app: postgres
+  ports:
+  - port: 5432 # Puerto que el servicio utilizará dentro del clúster
+    targetPort: 5432 # Puerto al que se redirigirá el tráfico en los pods
+    protocol: TCP # Protocolo utilizado
