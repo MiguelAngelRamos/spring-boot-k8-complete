@@ -25,7 +25,7 @@ spec:
         ports:
         - containerPort: 5432 # Puerto en el que el contenedor escucha
         volumeMounts:
-        - name: postgres-data
+        - name: pgdata
           mountPath: /var/lib/postgresql/data # Ruta donde se montará el volumen
       volumes:
       - name: pgdata
